@@ -1,11 +1,12 @@
-const app = require('express')();
-const { v4: uuidv4 } = require('uuid');
+const express = require('express')
+const app = express();
 const server = require('http').createServer(app);
+const { v4: uuidv4 } = require('uuid');
 
-const cors = {
-    origin: "http://localhost:8080",
-    methods: ["GET", "POST"]
-};
+const cors = process.env.LOCAL ? {
+        origin: "http://localhost:8080",
+        methods: ["GET", "POST"]
+    } : {};
 
 const io = require('socket.io')(server, {cors});
 
@@ -13,7 +14,7 @@ const PORT = 3000;
 const users = {};
 const messages = [];
 
-//app.use(app.static('dist'))
+app.use(express.static('dist'))
 
 app.post('/api/createUser', (req, res) => {
     const userName = req.query.value;
