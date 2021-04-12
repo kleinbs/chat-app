@@ -10,18 +10,24 @@ const foundUser = userName && id ? {userName, id} : null;
 export default () => {
     const [user, setUser] = useState(foundUser);
 
-    console.log('user in app', user?.userName)
     return (
         <Container component="main" maxWidth="md">
             <CssBaseline />
             {!user ?
-                <Login onUser={(user) => {setUser(user)}} /> :
+                <Login onConnect={(user) =>
+                    {
+                        const { id, userName } = user;
+                        document.cookie = `userId=${id}; samesite=strict`
+                        document.cookie = `userName=${userName}; samesite=strict`
+                        setUser(user)
+                    }
+                } /> :
                 <Messages user={user} onDisconnect={() =>
-                  {
-                    document.cookie = `userId=; samesite=strict; expires=Thu, 01 Jan 1970 00:00:01 GMT`
-                    document.cookie = `userName=; samesite=strict; expires=Thu, 01 Jan 1970 00:00:01 GMT`
-                    setUser(null)
-                  }
+                    {
+                        document.cookie = `userId=; samesite=strict; expires=Thu, 01 Jan 1970 00:00:01 GMT`
+                        document.cookie = `userName=; samesite=strict; expires=Thu, 01 Jan 1970 00:00:01 GMT`
+                        setUser(null)
+                    }
                 }
                 /> }
         </Container>)

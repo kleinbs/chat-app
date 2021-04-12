@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
     })
 )
 
-const Login = ({onUser}) => {
+const Login = ({ onConnect }) => {
 
     const classes = useStyles();
     const [userName, setUserName] = useState()
@@ -49,10 +49,7 @@ const Login = ({onUser}) => {
         const result = await fetch(`api/createUser?value=${userName}`, {method: 'POST'});
         const parsedResult = await result.json();
         if(parsedResult.data){
-            const { id, userName } = parsedResult.data.user;
-            document.cookie = `userId=${id}; samesite=strict`
-            document.cookie = `userName=${userName}; samesite=strict`
-            onUser(parsedResult.data.user)
+            onConnect(parsedResult.data.user)
         } else {
             setError(parsedResult.error ? parsedResult.error : {CODE: 'UNKNOWN_ERROR'})
         }

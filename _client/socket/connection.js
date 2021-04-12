@@ -16,19 +16,24 @@ export const useConnection = ({ user, onDisconnect }) => {
         client.current.on("connect", () => {
             client.current.emit('login', user)
         });
+
         client.current.on('connected', (data) => {
+            setConnectionState('connected')
             setMessages(data.messages);
             setActiveUsers(data.users)
-        })
+        });
+
         client.current.on('new-message', (data) => {
             setMessages(messages => [...messages, data])
-        })
-        client.current.on('updateUsers', (users) => {
+        });
+
+        client.current.on('user-disconnected', (users) => {
             setActiveUsers(users)
-        })
+        });
+
         client.current.on('disconnect', () => {
             onDisconnect();
-        })
+        });
     }, [])
 
     return {
