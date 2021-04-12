@@ -55,19 +55,6 @@ export default ({ user, onDisconnect }) => {
     console.log('refreshed messages', messages.length)
     return (
         <div>
-            {/*<div>*/}
-            {/*    {`status ${connectionState}`}*/}
-            {/*</div>*/}
-            {/*<div>*/}
-            {/*    {`Users: ${activeUsers.map(*/}
-            {/*        user => {*/}
-            {/*           return `name ${user?.userName}, active ${user?.active}` */}
-            {/*        })*/}
-            {/*        .join(' : ')}`}*/}
-            {/*</div>*/}
-            {/*<div>*/}
-            {/*    {`messages ${messages?.length}`}*/}
-            {/*</div>*/}
             <div id={'messages'} className={classes.messageBox}>
                 {messages.map((message, index) => {
                     return <Message

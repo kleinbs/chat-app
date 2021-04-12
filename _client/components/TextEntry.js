@@ -6,7 +6,6 @@ import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme) => ({
         submitContainer: {
             position: "fixed",
-
             margin: "0 auto",
             paddingBottom: "40px",
             width: '60em',
