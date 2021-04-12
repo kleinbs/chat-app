@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
         },
         myMessage: {
             margin: "10px",
-            padding: "20px",
+            padding: "5px 20px",
             backgroundColor: "lightblue",
             borderRadius: "10px",
         },

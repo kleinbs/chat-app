@@ -7,10 +7,9 @@ import {makeStyles} from "@material-ui/core/styles";
 const useStyles = makeStyles((theme) => ({
     messageBox: {
         height: '80vh',
-        overflow: 'auto',
-        flex: 1,
+        overflowY: 'auto',
+        flex: '1 1 auto',
         display: 'flex',
-        justifyContent: 'flex-end',
         flexDirection: 'column'
     },
     messageEntry: {
@@ -24,12 +23,33 @@ export default ({ user, onDisconnect }) => {
     const classes = useStyles();
     const { messages, connectionState, activeUsers, sendMessage } = useConnection({user, onDisconnect});
 
-    useEffect(() => {
+    const [isAtBottom, setIsAtBottom] = useState(true);
 
-    }, [] );
+    useEffect(() => {
+        const messageBox = document.getElementById('messages')
+        const checkScrollPosition = () => {
+            messageBox.scrollHeight - Math.abs(messageBox.scrollTop) === messageBox.clientHeight ?
+                setIsAtBottom(true) :
+                setIsAtBottom(false)
+        }
+        messageBox.addEventListener("scroll", checkScrollPosition, true);
+
+        return () => {
+            messageBox.removeEventListener("scroll", checkScrollPosition, true);
+        }
+    }, [])
+
+    useEffect(() => {
+        const messageBox = document.getElementById('messages')
+        if(isAtBottom) {
+            messageBox.scrollTo(0, messageBox.scrollHeight, 'smooth');
+        }
+        console.log(messageBox.scrollHeight)
+    });
 
     const postMessage = (message) => {
         sendMessage({ ...user, message })
+        setIsAtBottom(true)
     }
 
     console.log('refreshed messages', messages.length)
@@ -48,7 +68,7 @@ export default ({ user, onDisconnect }) => {
             {/*<div>*/}
             {/*    {`messages ${messages?.length}`}*/}
             {/*</div>*/}
-            <div className={classes.messageBox}>
+            <div id={'messages'} className={classes.messageBox}>
                 {messages.map((message, index) => {
                     return <Message
                         key={index}
