@@ -6,11 +6,14 @@ const cors = {
     origin: "http://localhost:8080",
     methods: ["GET", "POST"]
 };
+
 const io = require('socket.io')(server, {cors});
 
 const PORT = 3000;
 const users = {};
 const messages = [];
+
+//app.use(app.static('dist'))
 
 app.post('/api/createUser', (req, res) => {
     const userName = req.query.value;

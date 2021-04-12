@@ -44,7 +44,6 @@ export default ({ user, onDisconnect }) => {
         if(isAtBottom) {
             messageBox.scrollTo(0, messageBox.scrollHeight, 'smooth');
         }
-        console.log(messageBox.scrollHeight)
     });
 
     const postMessage = (message) => {
@@ -52,7 +51,6 @@ export default ({ user, onDisconnect }) => {
         setIsAtBottom(true)
     }
 
-    console.log('refreshed messages', messages.length)
     return (
         <div>
             <div id={'messages'} className={classes.messageBox}>
