@@ -14,6 +14,8 @@ Server:
 3. Websocket.io
 
 ## Setting up and Running the app
+
+### Development
 ```npm
 # To install all the app dependencies
 npm i
@@ -23,6 +25,13 @@ npm run start:server
 npm run start:client
 ```
 
+### Docker
+
+Install Docker https://docs.docker.com/engine/install/
+
+```npm
+npm run start:app
+```
 ## About this app
 **Q:** *How secure is this app?*
 
