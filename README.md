@@ -2,13 +2,13 @@
 
 This project is just me messing around. I created a chat app using:
 
-Client
+Client:
 1. React
 2. Webpack
 3. Material Ui
 4. Websocket.io client
 
-Server
+Server:
 1. Node
 2. Express
 3. Websocket.io
@@ -31,3 +31,7 @@ ___
 **Q:** *Why use material ui?*
 
 **A:** It made building this app very quickly, and didn't want to get hung up on styling
+___
+**Q:** *How is data saved?*
+
+**A:** Just in memory. When the app goes down, all messages and users are lost. in the future I may change this
