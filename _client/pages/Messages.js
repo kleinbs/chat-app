@@ -3,6 +3,7 @@ import { useConnection } from '../socket/connection'
 import TextEntry from "../components/TextEntry";
 import Message from "../components/Message";
 import {makeStyles} from "@material-ui/core/styles";
+import Users from "../components/Users";
 
 const useStyles = makeStyles((theme) => ({
     messageBox: {
@@ -12,8 +13,11 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         flexDirection: 'column'
     },
+    userBox: {
+        height: '5vh'
+    },
     messageEntry: {
-        height: '20vh',
+        height: '10vh',
         verticalAlign: 'bottom'
     }
 }));
@@ -63,6 +67,9 @@ export default ({ user, onDisconnect }) => {
                         myMessage={user.userName === message.userName}
                     />
                 })}
+            </div>
+            <div className={classes.userBox}>
+                <Users users={activeUsers}/>
             </div>
             <TextEntry onSubmit={postMessage}/>
         </div>

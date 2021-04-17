@@ -3,12 +3,11 @@ const app = express();
 const server = require('http').createServer(app);
 const { v4: uuidv4 } = require('uuid');
 
-const cors = process.env.LOCAL ? {
-        origin: "http://localhost:8080",
-        methods: ["GET", "POST"]
-    } : {};
+const cors = {
+    origin: '*'
+}
 
-const io = require('socket.io')(server, {cors});
+const io = require('socket.io')(server, { cors });
 
 const PORT = 3000;
 const users = {};
