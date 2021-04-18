@@ -7,9 +7,9 @@ import {makeStyles} from "@material-ui/core/styles";
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
-        justifyContent: 'center',
         listStyle: 'none',
         margin: 0,
+        padding: '5px',
     },
     innerWrapper: {
         marginLeft: 0,
@@ -17,7 +17,6 @@ const useStyles = makeStyles((theme) => ({
         overflowX: "scroll",
         marginRight: '-50px',
         minWidth: '100%',
-        backgroundColor: '#fafafa'
     },
     fade: {
         position: 'relative',
@@ -52,7 +51,7 @@ export default ({users}) => {
         )
 
     return (
-        <Paper elevation={0} component="ul" className={classes.root}>
+        <Paper elevation={5} component="ul" className={classes.root}>
             <div className={classes.innerWrapper}>
                 {userArray.map((user, index) => {
 
