@@ -27,8 +27,12 @@ export const useConnection = ({ user, onDisconnect }) => {
             setMessages(messages => [...messages, data])
         });
 
-        client.current.on('user-disconnected', (users) => {
-            setActiveUsers(users)
+        client.current.on('user-connected', (data) => {
+            setActiveUsers(data.users)
+        });
+
+        client.current.on('user-disconnected', (data) => {
+            setActiveUsers(data.users)
         });
 
         client.current.on('disconnect', () => {

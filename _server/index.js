@@ -60,11 +60,8 @@ io.on('connection', client => {
             user.userName = userName;
             users[data.userName].active = true;
 
-            const scrubbedUsers = Object.keys(users).map(key => {
-                const {active, userName} = users[key]
-                return {active, userName};
-            })
-            client.broadcast.emit('user-connected', { userName, active: true })
+            const scrubbedUsers = getScrubbedUsers(users);
+            client.broadcast.emit('user-connected', { users: scrubbedUsers })
             client.emit('connected', {
                 user,
                 users: scrubbedUsers,
@@ -82,7 +79,7 @@ io.on('connection', client => {
             users[user.userName].active = false
             user.active = false;
             const { userName, active } = user;
-            client.broadcast.emit('user-disconnected', { userName, active })
+            client.broadcast.emit('user-disconnected', {users: getScrubbedUsers(users)})
             console.log(`user ${userName} disconnected`);
         } else {
             console.log(`user doesn't seem to exist, disconnecting...`)
@@ -119,3 +116,10 @@ io.on('connection', client => {
     }
 
 });
+
+function getScrubbedUsers(users) {
+    return Object.keys(users).map(key => {
+        const {active, userName} = users[key]
+        return {active, userName};
+    })
+}
