@@ -13,22 +13,22 @@ const useStyles = makeStyles((theme) => ({
     },
     innerWrapper: {
         marginLeft: 0,
-        marginRight: 'auto',
         display: 'inherit',
         overflowX: "scroll",
-        '&::after': {
-            content: "",
-            zIndex: "1",
-            top: 0,
-            right: 0,
-            bottom: '15px',
-            pointerEvents: 'none',
-            backgroundImage: 'linear-gradient(to right, rgba(255,255,255,0), red 85%)',
-            width: '15%'
-        }
+        marginRight: '-50px',
+        minWidth: '100%',
+        backgroundColor: '#fafafa'
+    },
+    fade: {
+        position: 'relative',
+        height: '35px',
+        right: 0,
+        width: '10%',
+        zIndex: '999',
+        backgroundImage: 'linear-gradient(to right, rgba(255,255,255,0), #fafafa 85%)',
     },
     chip: {
-        margin: theme.spacing(0.5),
+        margin: theme.spacing(0.1),
     },
     activeIcon: {
         color: 'green'
@@ -54,22 +54,22 @@ export default ({users}) => {
     return (
         <Paper elevation={0} component="ul" className={classes.root}>
             <div className={classes.innerWrapper}>
-            {userArray.map((user, index) => {
+                {userArray.map((user, index) => {
 
-                const icon = <FiberManualRecordIcon
-                    className={user.active ? classes.activeIcon : classes.inactiveIcon}/>
-                return (
-                    <li key={index}>
-                        <Chip
-                            icon={icon}
-                            label={user.userName}
-                            className={classes.chip}
-                            color={user.active ? 'green' : 'lightgray'}
-                        />
-                    </li>
-                )
-            })}
+                    const icon = <FiberManualRecordIcon
+                        className={user.active ? classes.activeIcon : classes.inactiveIcon}/>
+                    return (
+                        <li key={index}>
+                            <Chip
+                                icon={icon}
+                                label={user.userName}
+                                className={classes.chip}
+                            />
+                        </li>
+                    )
+                })}
             </div>
+            <div className={classes.fade} />
         </Paper>
     )
 }
