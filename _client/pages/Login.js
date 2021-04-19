@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { Paper } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import React, {useEffect, useState} from "react";
+import {Avatar, Button, Grid, Paper, TextField, Typography} from "@material-ui/core";
+import {makeStyles} from "@material-ui/core/styles";
 import Icon from "@material-ui/icons/ChatBubbleOutline";
-import { Avatar, Button, Grid, TextField, Typography } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
