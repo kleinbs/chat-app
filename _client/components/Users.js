@@ -10,22 +10,34 @@ const useStyles = makeStyles((theme) => ({
     listStyle: "none",
     margin: 0,
     padding: "5px",
+    overflowX: "scroll",
   },
   innerWrapper: {
     marginLeft: 0,
     display: "inherit",
-    overflowX: "scroll",
-    marginRight: "-50px",
     minWidth: "100%",
-  },
-  fade: {
-    position: "relative",
-    height: "35px",
-    right: 0,
-    width: "10%",
-    zIndex: "999",
-    backgroundImage:
-      "linear-gradient(to right, rgba(255,255,255,0), #fafafa 85%)",
+    "&:after": {
+      content: "",
+      position: "absolute",
+      zIndex: 1,
+      bottom: 0,
+      left: 0,
+      pointerEvents: "none",
+      backgroundImage:
+        "linear-gradient(to right, rgba(255,255,255,0), red 85%)",
+      width: "100%",
+      height: "4em",
+    },
+    fade: {
+      position: "absolute",
+      height: "35px",
+      right: 0,
+      width: "10%",
+      zIndex: "999",
+      backgroundImage:
+        "linear-gradient(to right, rgba(255,255,255,0), red 85%)",
+    },
+    //"linear-gradient(to right, rgba(255,255,255,0), #fafafa 85%)",
   },
   chip: {
     margin: theme.spacing(0.1),
@@ -55,8 +67,8 @@ export default ({ users }) => {
     );
 
   return (
-    <Paper elevation={5} component="ul" className={classes.root}>
-      <div className={classes.innerWrapper}>
+    <div className={classes.innerWrapper}>
+      <Paper elevation={5} component="ul" className={classes.root}>
         {userArray.map((user, index) => {
           const icon = (
             <FiberManualRecordIcon
@@ -75,8 +87,8 @@ export default ({ users }) => {
             </li>
           );
         })}
-      </div>
+      </Paper>
       <div className={classes.fade} />
-    </Paper>
+    </div>
   );
 };

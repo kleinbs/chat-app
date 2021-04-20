@@ -7,7 +7,7 @@ import Users from "../components/Users";
 
 const useStyles = makeStyles((theme) => ({
   messageBox: {
-    height: "80vh",
+    height: "75vh",
     overflowY: "auto",
     flex: "1 1 auto",
     display: "flex",
@@ -17,8 +17,9 @@ const useStyles = makeStyles((theme) => ({
     height: "5vh",
   },
   messageEntry: {
-    height: "10vh",
-    verticalAlign: "bottom",
+    padding: "25px 0px 20px 0px",
+    height: "15vh",
+    minHeight: "15vh",
   },
 }));
 
@@ -78,7 +79,9 @@ export default ({ user, onDisconnect }) => {
       <div className={classes.userBox}>
         <Users users={activeUsers} />
       </div>
-      <TextEntry onSubmit={postMessage} />
+      <div className={classes.messageEntry}>
+        <TextEntry onSubmit={postMessage} />
+      </div>
     </div>
   );
 };
